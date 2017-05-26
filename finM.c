@@ -18,8 +18,8 @@
 #define pwm_motor_a 0
 #define in1_motor_a 1
 #define in2_motor_a 2
-#define in3_motor_b 3
-#define in4_motor_b 4
+#define in3_motor_b 4
+#define in4_motor_b 3
 #define pwm_motor_b 5
 
 //Tareas 
@@ -170,10 +170,10 @@ void converter_function(void *arg){
 			}
 		}
 		
-		dirA=0;
-		dirB=0;
-		potA = 0.5;
-		potB = 0.5;
+		//dirA=0;
+		//dirB=0;
+		//potA = 0.5;
+		//potB = 0.5;
 		
 		//waiting for period time
 		rt_task_wait_period(NULL);
@@ -283,7 +283,7 @@ void startup(){
 	*            function argument
 	*/
 	//rt_task_start(&demo_task, &demo, 0);
-	//rt_task_start(&serial_communication_task, &serial_communication_function, NULL);
+	rt_task_start(&serial_communication_task, &serial_communication_function, NULL);
 	rt_task_start(&converter_task, &converter_function, NULL);
 	rt_task_start(&dir_motor_a_task, &dir_motor_function, &a);
 	rt_task_start(&dir_motor_b_task, &dir_motor_function, &b);
